@@ -17,4 +17,28 @@ public class DataAccess {
         return list;
     }
 
+    public boolean getUser(String user) throws SQLException {
+        String userID = user;
+        Connection connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
+                "postgres", "postgres");
+        PreparedStatement state = connect.prepareStatement("select id from Users where Users.id = ?");
+        state.setString(1, userID);
+        ResultSet res = state.executeQuery();
+        boolean temp = res.next();
+        state.close();
+        connect.close();
+        return temp;
+    }
+
+    public void createUser(String user, String Pass) throws SQLException {
+        String userID = user;
+        String newPass = Pass;
+        Connection connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
+                "postgres", "postgres");
+        PreparedStatement state = connect.prepareStatement("insert into users (id, password) values (?, ?)");
+        state.setString(1, userID);
+        state.setString(2, newPass);
+        state.close();
+        connect.close();
+    }
 }
