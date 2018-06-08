@@ -4,18 +4,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@RestController
+@Controller
 public class MainController {
-    @GetMapping()
-    public String greeting() {
-        return "greeting";
-    }
+
 
     @GetMapping("/task1")
     public String task1(@RequestParam(name = "word") String word, Model model) throws SQLException {
@@ -26,10 +24,28 @@ public class MainController {
 
     }
 
-    @GetMapping("/join")
+    @GetMapping("/index")
+    public String index() throws SQLException {
+        return "index";
+    }
+    @GetMapping("/code.js")
+    public String codejs() throws SQLException {
+        return "code.js";
+    }
+
+    @GetMapping("/jquery-3.3.1.js")
+    public String jquery() throws SQLException {
+        return "jquery-3.3.1.js";
+    }
+
+    @PostMapping("/join")
 
     public String join(@RequestParam(name = "user") String user, @RequestParam(name = "pass") String pass) throws SQLException {
         return "";
+        if (name!=DataAccess.LoadList) {
+            DataAccess.createUser = name;
+        }
+        else ()
     }
 
     @GetMapping("/get_msg")
